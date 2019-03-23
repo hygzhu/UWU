@@ -172,3 +172,16 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+/* Video player */
+
+.video_cover {
+  position: fixed;
+  width: 1280px;
+  height: 720px;
+  z-index: 100;
+}
+
+.video_player {
+  z-index: -1;
+}

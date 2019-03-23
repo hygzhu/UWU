@@ -25,3 +25,13 @@ User.create!(name:  name,
      activated: true,
      activated_at: Time.zone.now)
 end
+
+Song.create!(song_title: "Chiisana Boukensha", 
+    song_artist: "Various",
+    song_type: "ED",
+    source: "Konosuba",
+    source_period: 20161,
+    url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!-ED01-NCBD.mp4")
+    
+
+
