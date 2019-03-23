@@ -1,4 +1,7 @@
+
+<%= link_to 'Back', songs_path %>
+
 <div class="video_cover"  ></div>
-<video class="video_player" autoplay>
-    <source src=<%= @song.url + "#t=0,20" %> >
+<video id="video" class="video_player" autoplay>
+    <source src=<%= @song.url + "#t=0" %> >
 </video>

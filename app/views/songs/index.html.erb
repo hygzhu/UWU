@@ -1,0 +1,14 @@
+<% provide(:title, 'All Songs') %>
+<h1>All Songs</h1>
+
+<%= will_paginate %>
+
+<table class="songs">
+  <th>Song Title</th>
+  <th>Song Artist</th>
+  <th>Song Type</th>
+  <th>Source</th>
+  <%= render @songs %>
+</table>
+
+<%= will_paginate %>

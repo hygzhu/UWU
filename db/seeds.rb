@@ -34,4 +34,20 @@ Song.create!(song_title: "Chiisana Boukensha",
     url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!-ED01-NCBD.mp4")
     
 
-
+Song.create!(song_title: "Ouchi ni Kaeritai", 
+    song_artist: "Various",
+    song_type: "ED",
+    source: "Konosuba S2",
+    source_period: 20161,
+    url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!2-ED01-NCBD.mp4")
+    
+    
+99.times do |n|
+    Song.create!(song_title: "Place holder", 
+        song_artist: "Various",
+        song_type: "OP",
+        source: "Test sauce",
+        source_period: 20161,
+        url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!2-ED01-NCBD.mp4")
+end    
+    
