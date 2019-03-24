@@ -1,8 +1,9 @@
 class TriviaController < ApplicationController
-    autocomplete :song, :source
+    autocomplete :song, :source, :full => true do |items|
+        ActiveSupport::JSON.encode( items.uniq{ |i| i["value"] } )
+    end
     
     def index
-        render "new_game"
     end
 
     def new_game
@@ -11,8 +12,8 @@ class TriviaController < ApplicationController
     end
 
     def submit
-        @answer = params[:answer][:answer_text]
-        @correct_answer = params[:correct_answer]
+        @params = params
+        @song = Song.find(params[:song_id])
     end
 
 private

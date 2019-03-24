@@ -19,28 +19,46 @@ User.create!(name:  name,
      activated_at: Time.zone.now)
 end
 
-Song.create!(song_title: "Chiisana Boukensha", 
-    song_artist: "Various",
-    song_type: "ED",
-    source: "Konosuba",
-    source_period: 20161,
-    url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!-ED01-NCBD.mp4")
+# Song.create!(song_title: "Chiisana Boukensha", 
+#     song_artist: "Various",
+#     song_type: "ED",
+#     source: "Konosuba",
+#     source_period: 20161,
+#     url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!-ED01-NCBD.mp4")
     
 
-Song.create!(song_title: "Ouchi ni Kaeritai", 
-    song_artist: "Various",
-    song_type: "ED",
-    source: "Konosuba S2",
-    source_period: 20161,
-    url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!2-ED01-NCBD.mp4")
+# Song.create!(song_title: "Ouchi ni Kaeritai", 
+#     song_artist: "Various",
+#     song_type: "ED",
+#     source: "Konosuba S2",
+#     source_period: 20161,
+#     url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!2-ED01-NCBD.mp4")
     
     
-99.times do |n|
-    Song.create!(song_title: "Place holder", 
-        song_artist: "Various",
-        song_type: "OP",
-        source: "Test sauce",
-        source_period: 20161,
-        url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!2-ED01-NCBD.mp4")
-end    
-    
+# 99.times do |n|
+#     Song.create!(song_title: "Place holder", 
+#         song_artist: "Various",
+#         song_type: "OP",
+#         source: "Test sauce",
+#         source_period: 20161,
+#         url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!2-ED01-NCBD.mp4")
+# end    
+
+
+require 'json'
+
+file = File.read "db/seeds/20190324.json"
+data = JSON.parse(file)
+
+data.each{ |song| 
+
+    song["song"] = {"title"=> "", "artist"=> "" } if song["song"].nil?
+
+    Song.create!(song_title: song["song"]["title"], 
+        song_artist: song["song"]["artist"],
+        song_type:  song["title"],
+        source: song["source"],
+        source_period: 0,
+        url: "https://openings.moe/video/" + song["file"] + ".mp4")
+        
+}

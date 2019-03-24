@@ -1,8 +1,20 @@
-You guessed: <%= @answer %>
-<br />
-Correct Answer: <%= @correct_answer %>
+<% if @params[:data][:answer].downcase == @song.source.downcase  %>
+<div class="alert alert-success" role="alert">
+  Correct!
+</div>
+<% else%>
+<div class="alert alert-danger" role="alert">
+  Wrong.
+</div>
+<% end%>
 
+You guessed: <%= @params[:data][:answer] %>
+<br />
+Correct Answer: <%= @song.source %>
+<br/>
+
+
+<%= link_to "View Song", @song, target: :_blank %>
 <br/>
   
-  
-<%= link_to "Guess another song", trivia_path, class: "btn btn-lg btn-primary" %>
+<%= link_to "Guess another song", trivia_simple_path, class: "btn btn-lg btn-primary" %>

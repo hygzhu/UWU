@@ -1,9 +1,9 @@
-<%= form_for :answer, url: trivia_path do |f| %>
+<%= form_for :data, url: trivia_path do |f| %>
     <%= f.label "Anime name: " %>
-    <%= f.text_field :answer_text, :data => {:autocomplete => trivia_autocomplete_song_source_path} %>
+    <%= f.text_field :answer, :data => {:autocomplete => trivia_autocomplete_song_source_path} %>
 
 
-    <%= hidden_field_tag :correct_answer, song.source %>
+    <%= hidden_field_tag :song_id, song.id %>
 
     <%= f.submit "submit"%>
 <% end %>
