@@ -1,6 +1,11 @@
 <% provide(:title, 'All Songs') %>
 <h1>All Songs</h1>
 
+<% if logged_in? && admin_user? %>
+<%= link_to "Add Song", new_song_path, class: "btn btn-small btn-primary" %>
+<% end %>
+<br/>
+
 <%= will_paginate %>
 
 <table class="songs">
@@ -8,6 +13,7 @@
   <th>Song Artist</th>
   <th>Song Type</th>
   <th>Source</th>
+  <th>Actions</th>
   <%= render @songs %>
 </table>
 

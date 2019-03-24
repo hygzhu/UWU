@@ -1,5 +1,23 @@
 
-<%= link_to 'Back', songs_path %>
+<%= link_to 'Back', songs_path, class: "btn btn-small btn-primary" %>
+
+<% if logged_in? && admin_user? %>
+<%= link_to "Edit", edit_song_path(@song), class: "btn btn-small btn-primary" %>
+<%= link_to "Delete", @song , method: :delete,
+                                data: { confirm: "You sure?" } , class: "btn btn-small btn-primary"%>
+                                <% end %>
+
+<br/>
+
+
+Song title: <%=  @song.song_title %><br/>
+Song Artist: <%=  @song.song_artist %><br/>
+Song Type: <%=  @song.song_type %><br/>
+Song Source: <%=  @song.source %><br/>
+Song Period: <%=  @song.source_period %><br/>
+Song URL: <%=  @song.url %><br/>
+
+<br/>
 
 <div class="video_cover"  ></div>
 <video id="video" class="video_player" autoplay>

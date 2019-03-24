@@ -1,0 +1,23 @@
+<%= form_for(@song) do |f| %>
+
+  <%= f.label :song_title %>
+  <%= f.text_field :song_title, class: 'form-control' %>
+
+  <%= f.label :song_artist %>
+  <%= f.text_field :song_artist, class: 'form-control' %>
+
+  <%= f.label :song_type %>
+  <%= f.text_field :song_type, class: 'form-control' %>
+
+  <%= f.label :source %>
+  <%= f.text_field :source, class: 'form-control' %>
+
+  <%= f.label :source_period %>
+  <%= f.text_field :source_period, class: 'form-control' %>
+
+  <%= f.label :url %>
+  <%= f.text_field :url, class: 'form-control' %>
+
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

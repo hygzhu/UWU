@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
@@ -69,9 +70,6 @@ private
     redirect_to(root_url) unless current_user?(@user)
   end
 
-  # Confirms an admin user.
-  def admin_user
-    redirect_to(root_url) unless current_user.admin?
-  end
+  
 
 end

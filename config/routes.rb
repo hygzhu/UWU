@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
   
   resources :users
-  resources :songs, only: [:show, :index]
+  resources :songs
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
