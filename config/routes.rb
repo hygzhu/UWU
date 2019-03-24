@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   get '/trivia', to: 'trivia#new_game'
+  get '/trivia/autocomplete_song_source'
   post '/trivia', to: 'trivia#submit'
   delete '/logout',  to: 'sessions#destroy'
 

@@ -11,7 +11,6 @@ gem 'bcrypt', '3.1.12'
 
 # CSS
 gem 'bootstrap-sass', '3.4.1'
-
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
 
@@ -21,6 +20,10 @@ gem 'faker', '~> 1.9.3'
 # Pagination
 gem 'will_paginate', '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
+
+#Auto complete search
+gem 'rails-jquery-autocomplete'
+gem 'jquery-ui-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

@@ -16,6 +16,9 @@
 //= require turbolinks
 //= require_tree .
 
+//= require jquery_ujs
+//= require jquery-ui/widgets/autocomplete
+//= require autocomplete-rails
 
 //Hook to prevent turbolinks from playing autoplay videos in cache
 ;(function () {
