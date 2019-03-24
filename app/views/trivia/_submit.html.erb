@@ -1,0 +1,9 @@
+<%= form_for :answer, url: trivia_path do |f| %>
+    <%= f.label "Anime name: " %>
+    <%= f.text_field :answer_text %>
+
+
+    <%= hidden_field_tag :correct_answer, song.source %>
+
+    <%= f.submit "submit"%>
+<% end %>

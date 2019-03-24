@@ -19,7 +19,4 @@ Song URL: <%=  @song.url %><br/>
 
 <br/>
 
-<div class="video_cover"  ></div>
-<video id="video" class="video_player" autoplay>
-    <source src=<%= @song.url + "#t=0" %> >
-</video>
+<%= render 'player', song: @song %>

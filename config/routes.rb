@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   post '/signup',  to: 'users#create'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
+  get '/trivia', to: 'trivia#new_game'
+  post '/trivia', to: 'trivia#submit'
   delete '/logout',  to: 'sessions#destroy'
 
 
