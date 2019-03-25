@@ -1,20 +1,37 @@
-<% if @params[:data][:answer].downcase == @song.source.downcase  %>
-<div class="alert alert-success" role="alert">
-  Correct!
+
+    <% if !logged_in?  %>
+    <div class="alert alert-warning" role="alert">
+        Log In to earn points from playing!
+    </div>
+    <% end%>
+
+
+<div class="panel panel-default">
+
+    <div class="panel-body">
+        <% if @params[:data][:answer].downcase == @song.source.downcase  %>
+        <div class="alert alert-success" role="alert">
+        Correct Answer!
+        </div>
+        <% else%>
+        <div class="alert alert-danger" role="alert">
+        Wrong Answer.
+        </div>
+        <% end%>
+    </div>
+
+   <div class="panel-body">
+        You guessed: <%= @params[:data][:answer] %>
+        <br />
+        Correct Answer: <%= @song.source %>
+        <br/>
+   </div>
+   <div class="panel-body">
+        <%= link_to "View Song", @song, target: :_blank, class: "btn btn-sm btn-primary" %>
+        <br/>
+   </div>
+
 </div>
-<% else%>
-<div class="alert alert-danger" role="alert">
-  Wrong.
-</div>
-<% end%>
 
-You guessed: <%= @params[:data][:answer] %>
-<br />
-Correct Answer: <%= @song.source %>
-<br/>
-
-
-<%= link_to "View Song", @song, target: :_blank %>
-<br/>
   
 <%= link_to "Guess another song", trivia_simple_path, class: "btn btn-lg btn-primary" %>

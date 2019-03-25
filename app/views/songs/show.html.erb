@@ -7,17 +7,20 @@
                                 data: { confirm: "You sure?" } , class: "btn btn-small btn-primary"%>
                                 <% end %>
 
-<br/>
 
+<div class="panel panel-default">
 
-Song title: <%=  @song.song_title %><br/>
-Song Artist: <%=  @song.song_artist %><br/>
-Song Type: <%=  @song.song_type %><br/>
-Song Source: <%=  @song.source %><br/>
-Song Period: <%=  @song.source_period %><br/>
-Song Popularity: <%=  @song.popularity %><br/>
-Song URL: <%=  @song.url %><br/>
+    <div class="panel-body">
 
-<br/>
+        Song title: <%=  @song.song_title %><br/>
+        Song Artist: <%=  @song.song_artist %><br/>
+        Song Type: <%=  @song.song_type %><br/>
+        Song Source: <%=  @song.source %><br/>
+        Song Period: <%=  @song.source_period %><br/>
+        Song Popularity: <%=  @song.popularity %><br/>
+        Song URL: <%=  @song.url %><br/>
+
+    </div>
+</div>
 
 <%= render 'player', song: @song %>
