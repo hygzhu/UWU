@@ -15,7 +15,7 @@
       * AJAX spinner while AJAX request is being processed
   * sets form_for options like :url, :method and input name prefix
 %>
-<%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
+<%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit', autocomplete: "off" } do |f| %>
   <div class="well well-small">
     <div class="row">
   <div class="col-md-3">

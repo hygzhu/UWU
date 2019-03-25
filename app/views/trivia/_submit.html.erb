@@ -1,9 +1,21 @@
+
 <%= form_for :data, url: trivia_path do |f| %>
-    <%= f.label "Anime name: " %>
-    <%= f.text_field :answer, :data => {:autocomplete => trivia_autocomplete_song_source_path} %>
 
 
     <%= hidden_field_tag :song_id, song.id %>
 
-    <%= f.submit "submit"%>
+<div class="well well-small">
+
+        <%= f.label "Anime name: " %>
+    <div class="row">
+        <div class="col-md-3">
+            <%= f.text_field :answer, :data => {:autocomplete => trivia_autocomplete_song_source_path}, class: "form-control" %>
+        </div>
+
+        <div class="col-md-3">
+            <%= f.submit "submit", class: "btn btn-default"%>
+        </div>
+    </div>
+
+</div>
 <% end %>
