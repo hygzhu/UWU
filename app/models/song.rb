@@ -39,6 +39,8 @@ class Song < ApplicationRecord
     case sort_option.to_s
     when /^created_at_/
         order("songs.created_at #{ direction }")
+    when /^popularity_/
+        order("songs.created_at #{ direction }")
     else
         raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
@@ -50,6 +52,8 @@ class Song < ApplicationRecord
     [
       ["Added date (newest first)", "created_at_desc"],
       ["Added date (oldest first)", "created_at_asc"],
+      ["Popularity (Lowest first)", "popularity_asc"],
+      ["Popularity (Highest first)", "popularity_desc"],
     ]
   end
 end

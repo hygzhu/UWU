@@ -1,8 +1,10 @@
 <tr>
-  <td><%=  song.song_title %></td>
-  <td><%= song.song_artist%></td>
-  <td><%= song.song_type%></td>
+
   <td><%= song.source%></td>
+  <td><%= song.song_type%></td>
+  <td><%= song.song_title %></td>
+  <td><%= song.song_artist%></td>
+  <td><%= song.popularity%></td>
   <td>
   <%= link_to "Show", song %>
   <% if logged_in? && admin_user? %>

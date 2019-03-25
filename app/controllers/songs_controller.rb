@@ -8,7 +8,7 @@ class SongsController < ApplicationController
             select_options: {
               sorted_by: Song.options_for_sorted_by
             },
-            persistence_id: "shared_key",
+            persistence_id: false,
             default_filter_params: { sorted_by: 'created_at_desc' },
             available_filters: [
               :sorted_by,
@@ -67,7 +67,7 @@ private
 
     def song_params
     params.require(:song).permit(:song_title, :song_artist, :song_type,
-                                  :source, :source_period, :url)
+                                  :source, :source_period, :popularity, :url)
     end
 
 end

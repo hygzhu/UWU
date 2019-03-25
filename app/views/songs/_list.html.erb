@@ -10,36 +10,15 @@
 <table class="table">
   <tr>
     <th>
-      <%= filterrific_sorting_link(@filterrific, :source) %>
+      Source
     </th>
     <th>Song Type</th>
     <th>Song Title</th>
     <th>Song Artist</th>
+    <th>Popularity <%# filterrific_sorting_link(@filterrific, :popularity) %></th>
     <th>Actions</th>
   </tr>
-  <% songs.each do |song| %>
-    <tr class="song">
-      <td class="source">
-        <%= song.source %>
-      </td>
-      <td class="song_type">
-        <%= song.song_type %>
-      </td>
-      <td class="song_title">
-        <%= song.song_title %>
-      </td>
-      <td class="song_artist">
-        <%= song.song_artist %>
-      </td>
-      <td>
-      <%= link_to "Show", song %>
-      <% if logged_in? && admin_user? %>
-      | <%= link_to "Edit", edit_song_path(song) %>
-      | <%= link_to "Delete", song , method: :delete,
-                                      data: { confirm: "You sure?" } %>
-      <% end %></td>
-    </tr>
-  <% end %>
+ <%= render @songs %>
 </table>
 <div class="chardin_box" data-intro="will_paginate's paginator works as expected." data-position="top">
   <%= will_paginate songs, renderer: BootstrapPagination::Rails %>
