@@ -17,6 +17,7 @@
 //= require_tree .
 //= require jquery-ui/widgets/autocomplete
 //= require autocomplete-rails
+//= require filterrific/filterrific-jquery
 
 //Hook to prevent turbolinks from playing autoplay videos in cache
 ;(function () {

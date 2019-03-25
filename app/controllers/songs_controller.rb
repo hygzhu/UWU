@@ -2,8 +2,28 @@ class SongsController < ApplicationController
     before_action :admin_user, only: [:create, :edit, :update, :destroy]
 
     def index
-        @songs = Song.all.paginate(page: params[:page], per_page: 15)
-      end
+        @filterrific = initialize_filterrific(
+            Song,
+            params[:filterrific],
+            select_options: {
+              sorted_by: Song.options_for_sorted_by
+            },
+            persistence_id: "shared_key",
+            default_filter_params: { sorted_by: 'created_at_desc' },
+            available_filters: [
+              :sorted_by,
+              :search_query
+            ],
+            sanitize_params: true,
+          ) || return
+
+        @songs = @filterrific.find.page(params[:page])
+       
+        respond_to do |format|
+            format.html
+            format.js
+        end
+    end
 
     def show
         @song = Song.find(params[:id])

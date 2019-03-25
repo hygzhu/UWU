@@ -20,10 +20,14 @@ gem 'faker', '~> 1.9.3'
 # Pagination
 gem 'will_paginate', '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'will_paginate-bootstrap'
+
+# Table Search and filtering
+gem 'filterrific', '~> 5.1.0'
 
 #Auto complete search
-gem 'rails-jquery-autocomplete'
-gem 'jquery-ui-rails'
+gem 'rails-jquery-autocomplete', '1.0.5'
+gem 'jquery-ui-rails', '6.0.1'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

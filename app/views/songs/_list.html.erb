@@ -1,0 +1,46 @@
+
+<div class="well well-small">
+  <div class="pull-right" data-intro="Reset the filter settings to defaults." data-position="bottom">
+    <%= link_to "Reset filters", reset_filterrific_url, :class => 'btn btn-default btn-sm' %>
+  </div>
+  <div class="chardin_box" data-intro="will_paginate's entries info works as expected." data-position="bottom">
+    <%= page_entries_info songs, :model => 'song' %>
+  </div>
+</div>
+<table class="table">
+  <tr>
+    <th>
+      <%= filterrific_sorting_link(@filterrific, :source) %>
+    </th>
+    <th>Song Type</th>
+    <th>Song Title</th>
+    <th>Song Artist</th>
+    <th>Actions</th>
+  </tr>
+  <% songs.each do |song| %>
+    <tr class="song">
+      <td class="source">
+        <%= song.source %>
+      </td>
+      <td class="song_type">
+        <%= song.song_type %>
+      </td>
+      <td class="song_title">
+        <%= song.song_title %>
+      </td>
+      <td class="song_artist">
+        <%= song.song_artist %>
+      </td>
+      <td>
+      <%= link_to "Show", song %>
+      <% if logged_in? && admin_user? %>
+      | <%= link_to "Edit", edit_song_path(song) %>
+      | <%= link_to "Delete", song , method: :delete,
+                                      data: { confirm: "You sure?" } %>
+      <% end %></td>
+    </tr>
+  <% end %>
+</table>
+<div class="chardin_box" data-intro="will_paginate's paginator works as expected." data-position="top">
+  <%= will_paginate songs, renderer: BootstrapPagination::Rails %>
+</div>
