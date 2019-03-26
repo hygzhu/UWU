@@ -1,5 +1,7 @@
 <%= form_for(@song) do |f| %>
 
+  <%= render 'shared/error_messages', object: @song %>
+
   <%= f.label :song_title %>
   <%= f.text_field :song_title, class: 'form-control' %>
 

@@ -1,0 +1,28 @@
+<tr>
+    <td>
+    <span class="content"><%= playlist.name %></span>
+    </td>
+    <td>
+    <span class="content"><%= playlist.description %></span>
+    </td>
+    <td id="playlist-<%= playlist.id %>">
+    <span class="user"><%= link_to playlist.user.name, playlist.user %></span>
+    </td>
+    <td>
+    <span class="content"><%= playlist.difficulty %></span>
+    </td>
+    <td>
+    <span class="content"><%= playlist.plays %></span>
+    </td>
+
+
+  <td>
+
+  <%= link_to "Show", playlist %>
+  <% if logged_in? && (current_user.id == playlist.user_id) %>
+  | <%= link_to "Edit", edit_playlist_path(playlist) %>
+  | <%= link_to "Delete", playlist , method: :delete,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+  </td>
+</tr>

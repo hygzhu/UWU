@@ -7,6 +7,14 @@ User.create!(name:  "Test",
     activated: true,
     activated_at: Time.zone.now)
 
+User.create!(name:  "Test2",
+    email: "test2@test.com",
+    password:              "123456",
+    password_confirmation: "123456",
+    admin:     false,
+    activated: true,
+    activated_at: Time.zone.now)
+
 99.times do |n|
 name  = Faker::Name.name
 email = "example-#{n+1}@railstutorial.org"
@@ -44,7 +52,7 @@ end
 #         url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!2-ED01-NCBD.mp4")
 # end    
 
-
+#seed songs
 require 'json'
 
 file = File.read "db/seeds/20190324.json"
@@ -62,3 +70,10 @@ data.each{ |song|
         url: "https://openings.moe/video/" + song["file"] + ".mp4")
         
 }
+
+#seed playlists
+users = User.order(:created_at).take(1)
+20.times do
+  description = Faker::Lorem.sentence(5)
+  users.each { |user| user.playlists.create!(description: description, name: "test playlist", difficulty: "easy", plays: 0 ) }
+end

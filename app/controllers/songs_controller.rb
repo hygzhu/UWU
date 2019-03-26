@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-    before_action :admin_user, only: [:create, :edit, :update, :destroy]
+    before_action :admin_user, only: [:new, :create, :edit, :update, :destroy]
 
     def index
         @filterrific = initialize_filterrific(

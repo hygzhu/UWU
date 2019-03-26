@@ -1,0 +1,16 @@
+<% provide(:title, 'All Playlists') %>
+<h1>All Playlists</h1>
+
+<%= will_paginate %>
+
+<table class="playlists table">
+    <th>Name</th>
+    <th>Description</th>
+    <th>Creator</th>
+    <th>Difficulty</th>
+    <th>Plays</th>
+    <th>Actions</th>
+  <%= render @playlists %>
+</table>
+
+<%= will_paginate %>
