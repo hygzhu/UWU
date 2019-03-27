@@ -1,0 +1,55 @@
+
+
+<%#
+  Filterrific adds the `form_for_filterrific` view helper:
+  * adds dom id 'filterrific_filter'
+  * applies javascript behaviors:
+      * AJAX form submission on change
+      * AJAX spinner while AJAX request is being processed
+  * sets form_for options like :url, :method and input name prefix
+%>
+<%= form_for_filterrific @filterrific,html: { id: 'filterrific-no-ajax-auto-submit', autocomplete: "off" } do |f| %>
+  <div class="well well-small">
+    <div class="row">
+  <div class="col-md-3">
+    Search
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed form-control'
+    ) %>
+  </div>
+  <div class="col-md-3">
+    Sorted by
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], {}, 
+      class: 'form-control') %>
+  </div>
+
+  <div class="col-md-2">
+    Filter
+    <%= f.submit 'Filter',:method => :get, class: "btn btn-primary" %>
+  </div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+  <%= render_filterrific_spinner %>
+</div>
+  </div>
+<% end %>
+
+<div class="well well-small">
+  <div class="pull-right" data-intro="Reset the filter settings to defaults." data-position="bottom">
+    <%= link_to "Reset filters", reset_filterrific_url, :class => 'btn btn-default btn-sm' %>
+  </div>
+  <div class="chardin_box" data-intro="will_paginate's entries info works as expected." data-position="bottom">
+    <%= page_entries_info @songs, :model => 'song' %>
+  </div>
+</div>
+
+<%= render(
+  partial: 'songs/list',
+  locals: { songs: @songs }
+) %>
+
+</table>
+<div class="chardin_box" data-intro="will_paginate's paginator works as expected." data-position="top">
+  <%= will_paginate @songs, renderer: BootstrapPagination::Rails %>
+</div>

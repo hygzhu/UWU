@@ -1,14 +1,54 @@
 
 <%= link_to 'Back', :back, class: "btn btn-small btn-primary" %>
+<div class="container">
 
-<div class="panel panel-default">
+<div class="row">
+        <div class="panel panel-default">
 
-    <div class="panel-body">
+            <div class="panel-body">
 
-        Name: <%=  @playlist.name %><br/>
-        Description: <%=  @playlist.description %><br/>
-        Difficulty: <%=  @playlist.difficulty %><br/>
-        Plays: <%=  @playlist.plays %><br/>
+                <table class="table">
+                <th>Name</th>
+                <th>Description</th>
+                <th>Difficulty</th>
+                <th>Plays </th>
+                <tr>
+                <td><%=  @playlist.name %></td>
+                <td><p><%=  @playlist.description %></p></td>
+                <td><%=  @playlist.difficulty %></td>
+                <td><%=  @playlist.plays %></td>
+                </tr>
+                </table>
+            </div>
+            
+        
+        </div>
+</div>
+
+<div class="row">
+    <div class="col-md">
+    
+        <h2>Current Songs</h2>
+
+        <%= render "playlist_songlist"%>
+    
+    </div>
+
+
+
+<%if logged_in? && (current_user.id == @playlist.user_id)%>
+    
+    <div class="col-md">
+    <h2>Add Songs to Playlist</h2>
+
+    <%= render "songs/songsearch"%>
 
     </div>
+<% end%>
+
 </div>
+
+
+</div>
+
+

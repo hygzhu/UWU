@@ -9,4 +9,5 @@ module UsersHelper
   def admin_user
     redirect_to(root_url) unless admin_user?
   end
+
 end

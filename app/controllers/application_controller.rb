@@ -14,4 +14,10 @@ private
     end
   end
   
+  #Confirms a playlist belongs to a user
+  def playlist_owner
+    @playlist = current_user.playlists.find_by(id: params[:playlist_id])
+    redirect_to root_url if @playlist.nil?
+end
+
 end

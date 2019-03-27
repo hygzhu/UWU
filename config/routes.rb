@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   resources :songs
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :playlists
+  resources :playlists do 
+    member do
+      get :songs
+    end
+  end
+  resources :playlist_song_relationships, only: [:create, :destroy]
 
   root 'static_pages#home'
 

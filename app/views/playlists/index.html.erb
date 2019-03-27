@@ -1,6 +1,10 @@
 <% provide(:title, 'All Playlists') %>
 <h1>All Playlists</h1>
 
+<% if logged_in?%>
+<%= link_to "Add Playlist", new_playlist_path, class: "btn btn-small btn-primary" %>
+<% end %>
+
 <%= will_paginate %>
 
 <table class="playlists table">

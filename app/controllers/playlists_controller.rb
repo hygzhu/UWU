@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
-    before_action :logged_in_user, only: [:new, :create, :destroy, :edit, :update]
-    before_action :correct_user,   only: [:destroy, :edit, :update]
+    before_action :logged_in_user, only: [:new, :create, :destroy, :edit, :update, :add_song]
+    before_action :correct_user,   only: [:destroy, :edit, :update, :add_song]
 
     def index
         @playlists = Playlist.all.paginate(page: params[:page], per_page: 15)
@@ -8,6 +8,32 @@ class PlaylistsController < ApplicationController
 
     def show
         @playlist = Playlist.find(params[:id])
+
+        #Show songs in playlist
+        @playlist_songs = @playlist.songs
+
+        #show all songs
+        @filterrific = initialize_filterrific(
+            Song,
+            params[:filterrific],
+            select_options: {
+              sorted_by: Song.options_for_sorted_by
+            },
+            persistence_id: false,
+            default_filter_params: { sorted_by: 'created_at_desc' },
+            available_filters: [
+              :sorted_by,
+              :search_query
+            ],
+            sanitize_params: true,
+          ) || return
+
+        @songs = @filterrific.find.paginate(page: params[:page], per_page: 5)
+       
+        respond_to do |format|
+            format.html
+            format.js
+        end
     end
 
     def new

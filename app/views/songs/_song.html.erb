@@ -7,10 +7,16 @@
   <td><%= song.source_period%></td>
   <td><%= song.popularity%></td>
   <td>
-  <%= link_to "Show", song %>
-  <% if logged_in? && admin_user? %>
-  | <%= link_to "Edit", edit_song_path(song) %>
-  | <%= link_to "Delete", song , method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %></td>
+
+  <%= link_to "Show", song, class: "btn btn-primary"  %>
+  
+
+  <% if logged_in? && current_user.admin?%>
+
+   <%= link_to "Edit", edit_song_path(song),class: "btn btn-primary"  %>
+   <%= link_to "Delete", song , method: :delete,
+                                  data: { confirm: "You sure?" },class: "btn btn-primary"  %>
+  
+  <% end %>
+  </td>
 </tr>

@@ -1,4 +1,8 @@
 class Song < ApplicationRecord
+    has_many :passive_relationships, class_name:  "PlaylistSongRelationship", foreign_key: "song_id", dependent:   :destroy
+    has_many :playlists, through: :passive_relationships, source: :playlist
+
+
     filterrific(
         default_filter_params: { sorted_by: 'created_at_desc' },
         available_filters: [
