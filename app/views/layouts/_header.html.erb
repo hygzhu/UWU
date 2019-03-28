@@ -1,27 +1,25 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <%= link_to "UwU", root_path, id: "logo" %>
-    <nav>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Play Trivia", trivia_path %></li>
-        <li><%= link_to "Songs", songs_path %></li>
-        <li><%= link_to "Playlists", playlists_path %></li>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li><%= link_to "Play Trivia", trivia_path,class: "nav-link" %></li>
+        <li><%= link_to "Songs", songs_path,class: "nav-link"  %></li>
+        <li><%= link_to "Playlists", playlists_path,class: "nav-link"  %></li>
 
         <% if logged_in? %>
-          <li><%= link_to "Users", users_path %></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
+          <li><%= link_to "Users", users_path, class: "nav-link"  %></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account</b>
             </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Profile", current_user %></li>
-              <li class="divider"></li>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "Profile", current_user, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Settings", edit_user_path(current_user),class:"dropdown-item" %>
+              <%= link_to "Log out", logout_path, method: :delete, class:"dropdown-item"  %>
 
-              <li><%= link_to "Settings", edit_user_path(current_user)%></li>
-              <li>
-                <%= link_to "Log out", logout_path, method: :delete %>
-              </li>
-            </ul>
+            </div>
           </li>
         <% else %>
           <li><%= link_to "Log in", login_path %></li>

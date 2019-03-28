@@ -9,7 +9,7 @@
   * sets form_for options like :url, :method and input name prefix
 %>
 <%= form_for_filterrific @filterrific,html: { id: 'filterrific-no-ajax-auto-submit', autocomplete: "off" } do |f| %>
-  <div class="well well-small">
+  <div class="card card-body bg-light">
     <div class="row">
   <div class="col-md-3">
     Search
@@ -35,13 +35,11 @@
   </div>
 <% end %>
 
-<div class="well well-small">
+<div class="card card-body bg-light">
   <div class="pull-right" data-intro="Reset the filter settings to defaults." data-position="bottom">
-    <%= link_to "Reset filters", reset_filterrific_url, :class => 'btn btn-default btn-sm' %>
-  </div>
-  <div class="chardin_box" data-intro="will_paginate's entries info works as expected." data-position="bottom">
-    <%= page_entries_info @songs, :model => 'song' %>
-  </div>
+    <%= link_to "Reset filters", reset_filterrific_url, :class => 'btn btn-primary btn-sm' %>
+  </div> 
+  <%= page_entries_info @songs, :model => 'song' %>
 </div>
 
 <table class="table">
@@ -83,6 +81,5 @@
 <% end %>
 
 </table>
-<div class="chardin_box" data-intro="will_paginate's paginator works as expected." data-position="top">
-  <%= will_paginate @songs, renderer: BootstrapPagination::Rails %>
-</div>
+
+<%= will_paginate @songs%>

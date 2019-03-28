@@ -9,15 +9,19 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//= require jquery
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+
 //= require turbolinks
-//= require bootstrap
 //= require rails-ujs
 //= require activestorage
-//= require_tree .
 //= require jquery-ui/widgets/autocomplete
 //= require autocomplete-rails
 //= require filterrific/filterrific-jquery
+
+
+//= require_tree .
 
 //Hook to prevent turbolinks from playing autoplay videos in cache
 ;(function () {
