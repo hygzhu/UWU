@@ -19,16 +19,24 @@ Rails.application.routes.draw do
   get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
+
   get '/signup',  to: 'users#new'
   post '/signup',  to: 'users#create'
+
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
-  get '/trivia', to: 'trivia#index'
-  get '/trivia/simple', to: 'trivia#new_game'
-  get '/trivia/autocomplete_song_source'
-  post '/trivia', to: 'trivia#submit'
   delete '/logout',  to: 'sessions#destroy'
 
+
+  get '/trivia', to: 'trivia#index'
+  get '/trivia/autocomplete_song_source'
+
+  get '/trivia/simple', to: 'trivia#new_simple_game'
+  post '/trivia/simplesubmit', to: 'trivia#simple_submit'
+
+  get '/trivia/playlistselect', to: 'trivia#playlist_select'
+  get '/trivia/playlist', to: 'trivia#new_playlist_game'
+  post '/trivia/playlistsubmit', to: 'trivia#playlist_submit'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

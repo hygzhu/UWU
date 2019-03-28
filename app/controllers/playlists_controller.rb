@@ -44,7 +44,7 @@ class PlaylistsController < ApplicationController
         @playlist = current_user.playlists.build(playlist_params)
         if @playlist.save
             flash[:success] = "Playlist created!"
-            redirect_to root_url
+            redirect_to @playlist
         else
             render 'new'
         end

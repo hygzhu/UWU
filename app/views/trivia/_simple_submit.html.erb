@@ -1,10 +1,10 @@
 
-<%= form_for :data, url: trivia_path do |f| %>
+<%= form_for :data, url: trivia_simplesubmit_path do |f| %>
 
 
     <%= hidden_field_tag :song_id, song.id %>
 
-<div class="well well-small">
+<div class="panel">
 
         <%= f.label "Anime name: " %>
     <div class="row">
@@ -13,7 +13,7 @@
         </div>
 
         <div class="col-md-3">
-            <%= f.submit "submit", class: "btn btn-default"%>
+            <%= f.submit "submit", class: "btn btn-primary"%>
         </div>
     </div>
 

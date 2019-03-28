@@ -1,0 +1,20 @@
+<h1 class="display-4">Select playlists</h1>
+
+<div class="container-fluid">
+
+<div class="row">
+            <% @playlists.each do |playlist| %>
+
+		<div class="col-lg-6">
+                <div class="card" >
+                    <div class="card-body">
+                        <h5 class="card-title"><%= playlist.name %></h5>
+                        <p class="card-text"><%= playlist.description %></p>
+                        <a href="#" class="btn btn-primary">Play</a>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+         </div>
+
+</div>

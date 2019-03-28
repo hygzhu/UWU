@@ -15,7 +15,7 @@ User.create!(name:  "Test2",
     activated: true,
     activated_at: Time.zone.now)
 
-99.times do |n|
+30.times do |n|
 name  = Faker::Name.name
 email = "example-#{n+1}@railstutorial.org"
 password = "password"
@@ -73,7 +73,33 @@ data.each{ |song|
 
 #seed playlists
 users = User.order(:created_at).take(1)
-20.times do
-  description = Faker::Lorem.sentence(5)
-  users.each { |user| user.playlists.create!(description: description, name: "test playlist", difficulty: "easy", plays: 0 ) }
+# 20.times do
+#   description = Faker::Lorem.sentence(5)
+#   users.each { |user| user.playlists.create!(description: description, name: "test playlist", difficulty: "easy", plays: 0 ) }
+# end
+
+users.first.playlists.create!(
+    description: "testddddd",
+     name: "Konosuba", 
+     difficulty: "easy", 
+     plays: 0 )
+
+playlist = Playlist.find(1)
+
+for i in [1346, 1345, 1344, 1343] do
+    song = Song.find(i)
+    playlist.add_song(song)
+end
+
+for j in 2..30 do
+    name = Faker::Company.bs
+    description = Faker::Lorem.sentence(5)
+    users.last.playlists.create!(description: description, name: "#{name} playlist", difficulty: "easy", plays: 0 )
+
+    playlist = Playlist.find(j)
+
+    for i in [1346, 1345, 1344, 1343] do
+        song = Song.find(i)
+        playlist.add_song(song)
+    end
 end
