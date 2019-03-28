@@ -29,18 +29,14 @@
     Filter
     <%= f.submit 'Filter',:method => :get, class: "btn btn-primary" %>
   </div>
-  <%# add an automated spinner to your form when the list is refreshed %>
-  <%= render_filterrific_spinner %>
+
+  <div class="col-md-2">
+  Reset filters<%= link_to "Reset filters", reset_filterrific_url, :class => 'btn btn-primary' %>
+  </div>
 </div>
   </div>
 <% end %>
 
-<div class="card card-body bg-light">
-  <div class="pull-right" data-intro="Reset the filter settings to defaults." data-position="bottom">
-    <%= link_to "Reset filters", reset_filterrific_url, :class => 'btn btn-primary btn-sm' %>
-  </div> 
-  <%= page_entries_info @songs, :model => 'song' %>
-</div>
 
 <table class="table">
   <tr>
@@ -81,5 +77,11 @@
 <% end %>
 
 </table>
+
+
+<div class="panel">
+
+  <%= page_entries_info @songs, :model => 'song' %>
+</div>
 
 <%= will_paginate @songs%>
