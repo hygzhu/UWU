@@ -18,5 +18,10 @@ class PlaylistSongRelationshipsController < ApplicationController
     end
 
     def destroy
+        song = Song.find(params[:song_id])
+        playlist = Playlist.find(params[:playlist_id])
+
+        playlist.remove_song(song)
+        redirect_to @playlist
     end
 end

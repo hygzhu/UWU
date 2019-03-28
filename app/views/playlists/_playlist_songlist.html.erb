@@ -16,24 +16,23 @@
 <% @playlist_songs.each do |song|%>
 
     <tr>
-    <td><%= song.source%></td>
+    <td><%= link_to song.source, song, target: :_blank %></td>
     <td><%= song.song_type%></td>
     <td><%= song.song_title %></td>
     <td><%= song.song_artist%></td>
     <td><%= song.source_period%></td>
     <td><%= song.popularity%></td>
     <td>
-
-    <%= link_to "Show", song, class: "btn btn-primary"  %>
+  
     
 
     <% if logged_in? && (current_user.id == @playlist.user_id) %>
 
-    
-    <%= form_for(@playlist.active_relationships.build) do |f| %>
-    <div><%= hidden_field_tag :playlist_id, @playlist.id %></div>
-    <div><%= hidden_field_tag :song_id, song.id %></div>
-    <%= f.submit "Add", class: "btn btn-primary" %>
+      <%= form_for(@playlist.active_relationships.find_by(song_id: song.id),
+                html: { method: :delete }) do |f| %>
+        <div><%= hidden_field_tag :playlist_id, @playlist.id %></div>
+        <div><%= hidden_field_tag :song_id, song.id %></div>
+      <%= f.submit "Remove", class: "btn btn-primary" %>
 
     <% end %>
 

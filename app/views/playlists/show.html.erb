@@ -30,7 +30,12 @@
     
         <h2>Current Songs</h2>
 
+       <% if !@playlist_songs.nil? && @playlist_songs.length > 0 %>
         <%= render "playlist_songlist"%>
+        <% else %>
+
+        <h4>No Songs in this playlist!</h2>
+        <% end %>
     
     </div>
 
@@ -41,7 +46,7 @@
     <div class="col-md">
     <h2>Add Songs to Playlist</h2>
 
-    <%= render "songs/songsearch"%>
+    <%= render "playlist_add_songs"%>
 
     </div>
 <% end%>
