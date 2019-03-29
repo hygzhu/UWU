@@ -1,0 +1,57 @@
+
+    <% if !logged_in?  %>
+    <div class="alert alert-warning" role="alert">
+        Log In to earn points from playing!
+    </div>
+    <% end%>
+
+
+
+<div class="card">
+Song: <%= @song_completed_ids.length %> out of <%= @song_ids.length + @song_completed_ids.length%>
+
+
+    <div class="card-body">
+        <% if @params[:data][:answer].downcase == @song.source.downcase  %>
+        <div class="alert alert-success" role="alert">
+        Correct Answer!
+        </div>
+        <% else%>
+        <div class="alert alert-danger" role="alert">
+        Wrong Answer.
+        </div>
+        <% end%>
+    </div>
+
+   <div class="card-body">
+        You guessed: <%= @params[:data][:answer] %>
+        <br />
+        Correct Answer: <%= @song.source %>
+        <br/>
+   </div>
+   <div class="card-body">
+        <%= link_to "View Song", @song, target: :_blank, class: "btn btn-sm btn-primary" %>
+        <br/>
+   </div>
+
+</div>
+
+  
+<% if @song_ids.any? %>
+
+    <%= form_for :data, url: trivia_playlist_url do |f| %>
+
+    <%= hidden_field_tag :playlist_id, @playlist.id %>
+    <%= hidden_field_tag :song_ids, @song_ids %>
+    <%= hidden_field_tag :song_completed_ids, @song_completed_ids%>
+    <%= hidden_field_tag :song, @song.id %>
+
+    <%= f.submit "Continue", class: "btn btn-primary"%>
+    <% end %>
+
+<% else %>
+
+<%=link_to "View Playlist", @playlist, class: "btn btn-primary" %>
+<%= link_to "Play More Trivia", trivia_path, class: "btn btn-primary"%>
+
+<% end %>

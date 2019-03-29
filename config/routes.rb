@@ -33,10 +33,13 @@ Rails.application.routes.draw do
 
   get '/trivia/simple', to: 'trivia#new_simple_game'
   post '/trivia/simplesubmit', to: 'trivia#simple_submit'
+  get '/trivia/simplesubmit', to: 'trivia#index'
 
   get '/trivia/playlistselect', to: 'trivia#playlist_select'
-  get '/trivia/playlist', to: 'trivia#new_playlist_game'
+  post '/trivia/playlist/', to: 'trivia#new_playlist_game'
   post '/trivia/playlistsubmit', to: 'trivia#playlist_submit'
+  get '/trivia/playlistsubmit', to: 'trivia#index'
+  get '/trivia/playlist/', to: 'trivia#index'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
