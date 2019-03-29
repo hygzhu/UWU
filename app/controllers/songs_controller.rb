@@ -17,7 +17,7 @@ class SongsController < ApplicationController
             sanitize_params: true,
           ) || return
 
-        @songs = @filterrific.find.page(params[:page])
+        @songs = @filterrific.find.page(params[:page]).per_page(10)
        
         respond_to do |format|
             format.html

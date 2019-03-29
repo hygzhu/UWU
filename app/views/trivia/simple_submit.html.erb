@@ -6,9 +6,9 @@
     <% end%>
 
 
-<div class="panel panel-default">
+<div class="card">
 
-    <div class="panel-body">
+    <div class="card-body">
         <% if @params[:data][:answer].downcase == @song.source.downcase  %>
         <div class="alert alert-success" role="alert">
         Correct Answer!
@@ -20,13 +20,13 @@
         <% end%>
     </div>
 
-   <div class="panel-body">
+   <div class="card-body">
         You guessed: <%= @params[:data][:answer] %>
         <br />
         Correct Answer: <%= @song.source %>
         <br/>
    </div>
-   <div class="panel-body">
+   <div class="card-body">
         <%= link_to "View Song", @song, target: :_blank, class: "btn btn-sm btn-primary" %>
         <br/>
    </div>

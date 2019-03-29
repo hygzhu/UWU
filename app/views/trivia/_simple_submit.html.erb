@@ -4,8 +4,8 @@
 
     <%= hidden_field_tag :song_id, song.id %>
 
-<div class="panel">
-
+<div class="card">
+<div class="card-body">
         <%= f.label "Anime name: " %>
     <div class="row">
         <div class="col-md-3">
@@ -16,6 +16,6 @@
             <%= f.submit "submit", class: "btn btn-primary"%>
         </div>
     </div>
-
+</div>
 </div>
 <% end %>

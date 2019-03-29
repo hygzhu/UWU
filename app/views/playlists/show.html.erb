@@ -2,11 +2,8 @@
 <%= link_to 'Back', :back, class: "btn btn-small btn-primary" %>
 <div class="container">
 
-<div class="row">
-        <div class="panel panel-default">
-
-            <div class="panel-body">
-
+<div class="row justify-content-center">
+    <div class ="card card-body">
                 <table class="table">
                 <th>Name</th>
                 <th>Description</th>
@@ -19,15 +16,13 @@
                 <td><%=  @playlist.plays %></td>
                 </tr>
                 </table>
-            </div>
-            
-        
-        </div>
+    </div>
 </div>
 
 <div class="row">
     <div class="col-md">
-    
+
+        <div class="card card-body">
         <h2>Current Songs</h2>
 
        <% if !@playlist_songs.nil? && @playlist_songs.length > 0 %>
@@ -36,6 +31,7 @@
 
         <h4>No Songs in this playlist!</h2>
         <% end %>
+        </div>
     
     </div>
 
@@ -44,10 +40,12 @@
 <%if logged_in? && (current_user.id == @playlist.user_id)%>
     
     <div class="col-md">
+    <div class="card card-body">
     <h2>Add Songs to Playlist</h2>
 
     <%= render "playlist_add_songs"%>
 
+    </div>
     </div>
 <% end%>
 
