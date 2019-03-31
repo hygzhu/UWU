@@ -10,7 +10,7 @@ rails db:migrate
 rails db:seed
 ```
 
-To run the serever
+To run the server
 ```
 rails server
 ```
