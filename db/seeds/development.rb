@@ -27,35 +27,10 @@ User.create!(name:  name,
      activated_at: Time.zone.now)
 end
 
-# Song.create!(song_title: "Chiisana Boukensha", 
-#     song_artist: "Various",
-#     song_type: "ED",
-#     source: "Konosuba",
-#     source_period: 20161,
-#     url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!-ED01-NCBD.mp4")
-    
-
-# Song.create!(song_title: "Ouchi ni Kaeritai", 
-#     song_artist: "Various",
-#     song_type: "ED",
-#     source: "Konosuba S2",
-#     source_period: 20161,
-#     url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!2-ED01-NCBD.mp4")
-    
-    
-# 99.times do |n|
-#     Song.create!(song_title: "Place holder", 
-#         song_artist: "Various",
-#         song_type: "OP",
-#         source: "Test sauce",
-#         source_period: 20161,
-#         url: "https://openings.moe/video/KonoSubarashiiSekaiNiShukufukuO!2-ED01-NCBD.mp4")
-# end    
-
 #seed songs
 require 'json'
 
-file = File.read "db/seeds/20190324.json"
+file = File.read "db/seeds/op_moe_20190324.json"
 data = JSON.parse(file)
 
 data.each{ |song| 
@@ -71,35 +46,42 @@ data.each{ |song|
         
 }
 
+file = File.read "db/seeds/themes_moe_20190330.json"
+data = JSON.parse(file)
+
+data.each{ |song| 
+    
+    Song.create!(song_title: "", 
+        song_artist: "",
+        song_type:  song["type"],
+        source: song["source"],
+        source_period: 0,
+        url: song["url"])
+        
+}
+
 #seed playlists
 users = User.order(:created_at).take(1)
-# 20.times do
-#   description = Faker::Lorem.sentence(5)
-#   users.each { |user| user.playlists.create!(description: description, name: "test playlist", difficulty: "easy", plays: 0 ) }
-# end
 
 users.first.playlists.create!(
-    description: "testddddd",
-     name: "Konosuba", 
-     difficulty: "easy", 
+    description: "Test",
+     name: "Test", 
+     difficulty: "Easy", 
      plays: 0 )
-
 playlist = Playlist.find(1)
-
-for i in [1346, 1345, 1344, 1343] do
+for i in [1344, 1346] do
     song = Song.find(i)
     playlist.add_song(song)
 end
 
-for j in 2..30 do
-    name = Faker::Company.bs
-    description = Faker::Lorem.sentence(5)
-    users.last.playlists.create!(description: description, name: "#{name} playlist", difficulty: "easy", plays: 0 )
-
-    playlist = Playlist.find(j)
-
-    for i in [1346, 1345, 1344, 1343] do
-        song = Song.find(i)
-        playlist.add_song(song)
-    end
+users.first.playlists.create!(
+    description: "Popular Opening Songs from Winter 2016",
+     name: "Winter 2016 Popular Openings", 
+     difficulty: "medium", 
+     plays: 0 )
+playlist = Playlist.find(2)
+for i in [1361, 178, 1007, 50, 1700, 426, 544, 506, 2047, 2332, 188, 1905, 1811] do
+    song = Song.find(i)
+    playlist.add_song(song)
 end
+
