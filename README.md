@@ -2,7 +2,12 @@
 
 ## Local Setup
 
-Install ruby version '2.5.3' and rails 5
+Install ruby version '2.5.3'
+
+Install gems
+```
+bundle install
+```
 
 Run the following commands to set up the DB 
 ```
