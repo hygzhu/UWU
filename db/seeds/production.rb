@@ -20,12 +20,12 @@ file = File.read "db/seeds/themes_moe_20190330.json"
 data = JSON.parse(file)
 
 data.each{ |song| 
-    
+
     Song.create!(song_title: "", 
         song_artist: "",
         song_type:  song["type"],
         source: song["source"],
         source_period: 0,
-        url: songs["url"])
+        url: song["url"])
         
 }
