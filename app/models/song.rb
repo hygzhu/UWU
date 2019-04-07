@@ -1,6 +1,9 @@
 class Song < ApplicationRecord
-    has_many :passive_relationships, class_name:  "PlaylistSongRelationship", foreign_key: "song_id", dependent:   :destroy
-    has_many :playlists, through: :passive_relationships, source: :playlist
+    has_many :playlist_relationships, class_name:  "PlaylistSongRelationship", foreign_key: "song_id", dependent:   :destroy
+    has_many :playlists, through: :playlist_relationships, source: :playlist
+
+    has_many :source_relationships, class_name:  "SourceSongRelationship", foreign_key: "song_id", dependent:   :destroy
+    has_many :sources, through: :source_relationships, source: :source
 
 
     filterrific(
