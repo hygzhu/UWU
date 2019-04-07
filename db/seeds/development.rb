@@ -45,7 +45,7 @@ data.each{ |year|
             tmp = Song.new(song_title: song["name"], 
                 song_type:  song["type"],
                 source: song["source"],
-                url: song['url'])
+                url: song['url'].sub('-NCBD1080', ''))
             tmp.save
 
             songs.push(tmp)
