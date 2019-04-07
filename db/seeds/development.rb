@@ -27,38 +27,39 @@ User.create!(name:  name,
      activated_at: Time.zone.now)
 end
 
-#seed songs
+#seed sources and songs
 require 'json'
 
-file = File.read "db/seeds/op_moe_20190324.json"
+file = File.read "db/seeds/files/years4-7-2019.json"
 data = JSON.parse(file)
 
-data.each{ |song| 
+data.each{ |year| 
 
-    song["song"] = {"title"=> "", "artist"=> "" } if song["song"].nil?
+    key, value = year.first
 
-    Song.create!(song_title: song["song"]["title"], 
-        song_artist: song["song"]["artist"],
-        song_type:  song["title"],
-        source: song["source"],
-        source_period: 0,
-        url: "https://openings.moe/video/" + song["file"] + ".mp4")
-        
+    value.each{ |source|
+
+        songs = []
+
+        source['songs'].each{ |song|
+            tmp = Song.new(song_title: song["name"], 
+                song_type:  song["type"],
+                source: song["source"],
+                url: song['url'])
+            tmp.save
+
+            songs.push(tmp)
+        }
+
+        source = Source.new(name: source['source'], year: key, period: source['period'])
+        source.save
+
+        songs.each{|song|
+            source.add_song(song)
+        }
+    }    
 }
 
-file = File.read "db/seeds/themes_moe_20190330.json"
-data = JSON.parse(file)
-
-data.each{ |song| 
-    
-    Song.create!(song_title: "", 
-        song_artist: "",
-        song_type:  song["type"],
-        source: song["source"],
-        source_period: 0,
-        url: song["url"])
-        
-}
 
 #seed playlists
 users = User.order(:created_at).take(1)
@@ -75,8 +76,8 @@ for i in [1344, 1346] do
 end
 
 users.first.playlists.create!(
-    description: "Popular Opening Songs from Winter 2016",
-     name: "Winter 2016 Popular Openings", 
+    description: "Popular Playlist",
+     name: "Popular Openings", 
      difficulty: "medium", 
      plays: 0 )
 playlist = Playlist.find(2)

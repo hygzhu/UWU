@@ -1,9 +1,11 @@
 <% provide(:title, 'All Songs') %>
 <h1>All Songs</h1>
 
-<% if logged_in? && admin_user? %>
-<%= link_to "Add Song", new_song_path, class: "btn btn-small btn-primary" %>
-<% end %>
+
+<%# if logged_in? && admin_user? %>
+<%#= link_to "Add Song", new_song_path, class: "btn btn-small btn-primary" %>
+<%# end %>
+
 <br/>
 
 <%= render "songsearch"%>
