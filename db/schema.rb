@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_04_08_023143) do
   end
 
   create_table "songs", force: :cascade do |t|
+    t.integer "source_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "song_title"
@@ -44,7 +45,6 @@ ActiveRecord::Schema.define(version: 2019_04_08_023143) do
     t.integer "source_period"
     t.string "url"
     t.integer "popularity"
-    t.integer "source_id"
     t.string "source_name"
     t.index ["source_id"], name: "index_songs_on_source_id"
   end

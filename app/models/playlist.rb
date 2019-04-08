@@ -1,5 +1,6 @@
 class Playlist < ApplicationRecord
     belongs_to :user
+    
     has_many :active_relationships, class_name:  "PlaylistSongRelationship", foreign_key: "playlist_id", dependent: :destroy
     has_many :songs, through: :active_relationships, source: :song
 
