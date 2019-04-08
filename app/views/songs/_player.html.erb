@@ -1,23 +1,22 @@
-<script type="text/javascript">
-    var video = document.getElementById('video');
-
-    var retry = 0;
-    video.addEventListener('error', function(event) {
-        if(retry < 4){
-            retry++;
-            console.log('something went wrong! Retrying.. '+retry+'');
-            $n = $(this);
-                setTimeout(function(){
-                $n.appendTo( $('#video') );
-            },3000);
-            }
-    }, true);
-
-    console.log("test");
-</script>
-
 
 <div class="video_cover"  ></div>
 <video id="video" class="video-fluid z-depth-1" autoplay loop>
     <source src=<%= song.url + "#t=0" %> >
 </video>
+
+<script type="text/javascript">
+    var video = document.getElementById('video');
+
+    var retry = 0;
+    video.addEventListener('error', function(event) {
+        if(retry < 100000){
+            retry++;
+            console.log('something went wrong! Retrying.. '+retry+'');
+            $n = $(this);
+            setTimeout(function(){
+                video.load();
+            },3000);
+        }
+    }, true);
+</script>
+
