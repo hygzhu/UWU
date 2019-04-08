@@ -2,8 +2,7 @@ class Song < ApplicationRecord
     has_many :playlist_relationships, class_name:  "PlaylistSongRelationship", foreign_key: "song_id", dependent:   :destroy
     has_many :playlists, through: :playlist_relationships, source: :playlist
 
-    has_many :source_relationships, class_name:  "SourceSongRelationship", foreign_key: "song_id", dependent:   :destroy
-    has_many :sources, through: :source_relationships, source: :source
+    belongs_to :source
 
 
     filterrific(
@@ -30,7 +29,7 @@ class Song < ApplicationRecord
     where(
         terms.map {
         or_clauses = [
-            "LOWER(songs.source) LIKE ?",
+            "LOWER(songs.source_name) LIKE ?",
             "LOWER(songs.song_title) LIKE ?",
             "LOWER(songs.song_artist) LIKE ?"
         ].join(' OR ')

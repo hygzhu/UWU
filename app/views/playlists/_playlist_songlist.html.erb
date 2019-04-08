@@ -16,7 +16,7 @@
 <% @playlist_songs.each do |song|%>
 
     <tr>
-    <td><%= link_to song.source, song, target: :_blank %></td>
+    <td><%= link_to song.source_name, song, target: :_blank %></td>
     <td><%= song.song_type%></td>
     <td><%= song.song_title %></td>
     <td><%= song.song_artist%></td>

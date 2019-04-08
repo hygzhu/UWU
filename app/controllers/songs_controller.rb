@@ -67,7 +67,7 @@ private
 
     def song_params
     params.require(:song).permit(:song_title, :song_artist, :song_type,
-                                  :source, :source_period, :popularity, :url)
+                                  :source_name, :source_period, :popularity, :url)
     end
 
 end

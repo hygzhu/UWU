@@ -1,5 +1,5 @@
 class TriviaController < ApplicationController
-    autocomplete :song, :source, :full => true do |items|
+    autocomplete :song, :source_name, :full => true do |items|
         ActiveSupport::JSON.encode( items.uniq{ |i| i["value"] } )
     end
     

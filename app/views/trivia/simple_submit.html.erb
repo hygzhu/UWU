@@ -9,7 +9,7 @@
 <div class="card">
 
     <div class="card-body">
-        <% if @params[:data][:answer].downcase == @song.source.downcase  %>
+        <% if @params[:data][:answer].downcase == @song.source_name.downcase  %>
         <div class="alert alert-success" role="alert">
         Correct Answer!
         </div>
@@ -23,7 +23,7 @@
    <div class="card-body">
         You guessed: <%= @params[:data][:answer] %>
         <br />
-        Correct Answer: <%= @song.source %>
+        Correct Answer: <%= @song.source_name %>
         <br/>
    </div>
    <div class="card-body">

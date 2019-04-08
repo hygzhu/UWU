@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   resources :users
   resources :songs
+  resources :sources
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :playlists do 
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
 
 
   get '/trivia', to: 'trivia#index'
-  get '/trivia/autocomplete_song_source'
+  get '/trivia/autocomplete_song_source_name'
 
   get '/trivia/simple', to: 'trivia#new_simple_game'
   post '/trivia/simplesubmit', to: 'trivia#simple_submit'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_07_230441) do
+ActiveRecord::Schema.define(version: 2019_04_08_023143) do
 
   create_table "playlist_song_relationships", force: :cascade do |t|
     t.integer "playlist_id"
@@ -44,16 +44,9 @@ ActiveRecord::Schema.define(version: 2019_04_07_230441) do
     t.integer "source_period"
     t.string "url"
     t.integer "popularity"
-  end
-
-  create_table "source_song_relationships", force: :cascade do |t|
     t.integer "source_id"
-    t.integer "song_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["song_id"], name: "index_source_song_relationships_on_song_id"
-    t.index ["source_id", "song_id"], name: "index_source_song_relationships_on_source_id_and_song_id", unique: true
-    t.index ["source_id"], name: "index_source_song_relationships_on_source_id"
+    t.string "source_name"
+    t.index ["source_id"], name: "index_songs_on_source_id"
   end
 
   create_table "sources", force: :cascade do |t|

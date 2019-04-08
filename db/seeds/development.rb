@@ -39,23 +39,16 @@ data.each{ |year|
 
     value.each{ |source|
 
-        songs = []
+
+        new_source = Source.new(name: source['source'], year: key, period: source['period'])
+        new_source.save
+
 
         source['songs'].each{ |song|
-            tmp = Song.new(song_title: song["name"], 
-                song_type:  song["type"],
-                source: song["source"],
+            new_source.songs.create(song_title: song["name"], 
+                song_type:song["type"],
+                source_name: song["source"],
                 url: song['url'].sub('-NCBD1080', ''))
-            tmp.save
-
-            songs.push(tmp)
-        }
-
-        source = Source.new(name: source['source'], year: key, period: source['period'])
-        source.save
-
-        songs.each{|song|
-            source.add_song(song)
         }
     }    
 }
