@@ -5,9 +5,6 @@
     </th>
     <th>Song Type</th>
     <th>Song Title</th>
-    <th>Song Artist</th>
-    <th>Source Period</th>
-    <th>Popularity <</th>
     <th>Actions</th>
   </tr>
 
@@ -16,12 +13,9 @@
 <% @playlist_songs.each do |song|%>
 
     <tr>
-    <td><%= link_to song.source_name, song, target: :_blank %></td>
+    <td><%= link_to song.source_name, song.source, target: :_blank %></td>
     <td><%= song.song_type%></td>
-    <td><%= song.song_title %></td>
-    <td><%= song.song_artist%></td>
-    <td><%= song.source_period%></td>
-    <td><%= song.popularity%></td>
+    <td><%= link_to song.song_title, song, target: :_blank   %></td>
     <td>
   
     

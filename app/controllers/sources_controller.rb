@@ -1,7 +1,7 @@
 class SourcesController < ApplicationController
 
     def index
-        @source = Source.all.paginate(page: params[:page], per_page: 15)
+        @sources = Source.all.paginate(page: params[:page], per_page: 15)
     end
 
     def show
