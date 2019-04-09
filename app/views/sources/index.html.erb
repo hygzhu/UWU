@@ -1,13 +1,4 @@
 <% provide(:title, 'All Anime') %>
 <h1>All Anime</h1>
 
-<table class="sources table">
-    <th>Name</th>
-    <th>Period</th>
-    <th>Year</th>
-    <th># Songs</th>
-    <th>Actions</th>
-  <%= render @sources %>
-</table>
-
-<%= will_paginate %>
+<%= render 'sourcesearch'%>
