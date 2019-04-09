@@ -18,7 +18,11 @@ class TriviaController < ApplicationController
     
 
     def playlist_select
-        @playlists = Playlist.all.paginate(page: params[:page], per_page: 6)
+        #Get auto generated playlists
+        @premade_playlists = User.find(1).playlists.paginate(page: params[:playlist_page], per_page: 6)
+
+        #Get user created playlists
+        @playlists = Playlist.where.not(user_id: 1).paginate(page: params[:playlist_page], per_page: 6)
     end
 
     def new_playlist_game

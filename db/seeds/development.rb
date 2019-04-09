@@ -40,7 +40,7 @@ data.each{ |year|
     value.each{ |source|
 
 
-        new_source = Source.new(name: source['source'], year: key, period: source['period'])
+        new_source = Source.new(name: source['source'], year: key, period: source['period'].split.first)
         new_source.save
 
 
@@ -54,26 +54,51 @@ data.each{ |year|
 }
 
 
-#seed playlists
+#Seed premade playlists
 users = User.order(:created_at).take(1)
 
-users.first.playlists.create!(
-    description: "Test",
-     name: "Test", 
-     difficulty: "Easy", 
-     plays: 0 )
-playlist = Playlist.find(1)
-for i in [1344, 1346] do
-    song = Song.find(i)
-    playlist.add_song(song)
+#Openings for each season
+Source.select(:year).map(&:year).uniq.each do |year|
+    Source.select(:period).map(&:period).uniq.each do |season|
+
+        #Create playlist
+        playlist = users.first.playlists.new(
+            description: "Opening Songs from #{season.capitalize} #{year}",
+             name: "#{season.capitalize} #{year} Openings", 
+             difficulty: "Normal", 
+             plays: 0 )
+        playlist.save
+
+        openings= []
+        #Select all sources in this year and season
+        shows = Source.where("year = ? AND period = ?", year, season)
+        shows.each do |show|
+            song = show.songs.where("song_type = 'OP'")
+            playlist.add_song(song)
+        end
+    end
 end
 
-users.first.playlists.create!(
+#seed playlists
+30.times do
+    playlist =  User.find(2).playlists.new(
+        description: "Test",
+         name: "Test", 
+         difficulty: "Easy", 
+         plays: 0 )
+    playlist.save
+    for i in [1344, 1346] do
+        song = Song.find(i)
+        playlist.add_song(song)
+    end
+end
+
+playlist = User.find(2).playlists.new(
     description: "Popular Playlist",
      name: "Popular Openings", 
      difficulty: "medium", 
      plays: 0 )
-playlist = Playlist.find(2)
+playlist.save
 for i in [1361, 178, 1007, 50, 1700, 426, 544, 506, 2047, 2332, 188, 1905, 1811] do
     song = Song.find(i)
     playlist.add_song(song)

@@ -1,6 +1,33 @@
-<h1 class="display-4">Select playlists</h1>
+<h1 class="display-4">Select Season/Year</h1>
 
 <div class="container-fluid">
+
+<div class="row">
+            <% @premade_playlists.each do |premade_playlist| %>
+
+		<div class="col-lg-6">
+                <div class="card m-2" >
+                    <div class="card-body">
+                        <h5 class="card-title"><%= premade_playlist.name %></h5>
+                        <p class="card-text"><%= premade_playlist.description %></p>
+                        <%= link_to "Play",trivia_playlist_url(playlist: premade_playlist, start: false), method: :post ,class: "btn btn-primary" %>
+                    </div>
+                </div>
+        </div>
+            <% end %>
+
+
+</div>
+
+<%= will_paginate @premade_playlists, :param_name => :premade_playlist_page %>
+</div>
+
+
+
+
+<div class="container-fluid">
+
+<h1 class="display-4">Select User playlists</h1>
 
 <div class="row">
             <% @playlists.each do |playlist| %>
@@ -13,13 +40,14 @@
                         <%= link_to "Play",trivia_playlist_url(playlist: playlist, start: false), method: :post ,class: "btn btn-primary" %>
                     </div>
                 </div>
-            </div>
+        </div>
             <% end %>
 
 
-         </div>
+</div>
+
+<%= will_paginate @playlists, :param_name => :playlist_page %>
+
 
 </div>
 
-
-        <%= will_paginate @playlists%>
