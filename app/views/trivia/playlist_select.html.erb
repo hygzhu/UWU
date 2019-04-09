@@ -1,33 +1,37 @@
-<h1 class="display-4">Select Season/Year</h1>
+<h1 class="display-4">Select Playlist</h1>
 
 <div class="container-fluid">
 
-<div class="row">
-            <% @premade_playlists.each do |premade_playlist| %>
+<%= form_for_filterrific @filterrific,html: { id: 'filterrific-no-ajax-auto-submit', autocomplete: "off" } do |f| %>
+  <div class="card card-body bg-light">
+    <div class="row">
+  <div class="col-md-3">
+    Search
+    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed form-control'
+    ) %>
+  </div>
+  <div class="col-md-3">
+    Sorted by
+    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by], {}, 
+      class: 'form-control') %>
+  </div>
 
-		<div class="col-lg-6">
-                <div class="card m-2" >
-                    <div class="card-body">
-                        <h5 class="card-title"><%= premade_playlist.name %></h5>
-                        <p class="card-text"><%= premade_playlist.description %></p>
-                        <%= link_to "Play",trivia_playlist_url(playlist: premade_playlist, start: false), method: :post ,class: "btn btn-primary" %>
-                    </div>
-                </div>
-        </div>
-            <% end %>
+  <div class="col-md-2">
+    Filter
+    <%= f.submit 'Filter',:method => :get, class: "btn btn-primary" %>
+  </div>
+  
 
-
+  <div class="col-md-2">
+  Reset filters<%= link_to "Reset filters", reset_filterrific_url, :class => 'btn btn-primary' %>
+  </div>
 </div>
+  </div>
+<% end %>
 
-<%= will_paginate @premade_playlists, :param_name => :premade_playlist_page %>
-</div>
-
-
-
-
-<div class="container-fluid">
-
-<h1 class="display-4">Select User playlists</h1>
 
 <div class="row">
             <% @playlists.each do |playlist| %>
@@ -46,8 +50,10 @@
 
 </div>
 
-<%= will_paginate @playlists, :param_name => :playlist_page %>
+<%= page_entries_info @playlists, :model => 'playlist' %>
 
-
+<%= will_paginate @playlists, :param_name => :premade_playlist_page %>
 </div>
+
+
 

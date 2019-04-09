@@ -18,11 +18,27 @@ class TriviaController < ApplicationController
     
 
     def playlist_select
-        #Get auto generated playlists
-        @premade_playlists = User.find(1).playlists.paginate(page: params[:premade_playlist_page], per_page: 6)
+        @filterrific = initialize_filterrific(
+            Playlist,
+            params[:filterrific],
+            select_options: {
+              sorted_by: Playlist.options_for_sorted_by
+            },
+            persistence_id: false,
+            default_filter_params: { sorted_by: 'default_desc' },
+            available_filters: [
+              :sorted_by,
+              :search_query
+            ],
+            sanitize_params: true,
+          ) || return
 
-        #Get user created playlists
-        @playlists = Playlist.where.not(user_id: 1).paginate(page: params[:playlist_page], per_page: 6)
+        @playlists = @filterrific.find.page(params[:premade_playlist_page]).per_page(6)
+       
+        respond_to do |format|
+            format.html
+            format.js
+        end
     end
 
     def new_playlist_game
