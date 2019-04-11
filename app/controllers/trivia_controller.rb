@@ -7,8 +7,8 @@ class TriviaController < ApplicationController
     end
 
     def new_simple_game
-        @songs = Song.order(Arel.sql('random()')).limit(1)
-        @current_song = @songs.first
+        @possible_songs = Song.order(Arel.sql('random()')).limit(4)
+        @current_song = @possible_songs.sample
     end
 
     def simple_submit
@@ -52,7 +52,7 @@ class TriviaController < ApplicationController
                 redirect_to trivia_path
                 return
             end
-
+            
             @song_ids = @playlist.songs.shuffle.map(&:id)
             @song_id = @song_ids.pop
             @song_completed_ids = []
@@ -67,6 +67,9 @@ class TriviaController < ApplicationController
             @song_completed_ids << @song_id
             @song = Song.find(@song_id)
         end
+        
+        @possible_song_names = Song.order(Arel.sql('random()')).limit(3).map(&:source_name)
+        @possible_song_names.push(@song.source_name).shuffle
 
     end
 

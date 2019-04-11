@@ -4,6 +4,7 @@
   <%= hidden_field_tag :song_ids, @song_ids %>
   <%= hidden_field_tag :song_completed_ids, @song_completed_ids%>
   <%= hidden_field_tag :song_id, @song.id %>
+  <%= hidden_field_tag :answer, nil %>
 
 
 <div class="card">
@@ -17,7 +18,37 @@
         <div class="col-md-3">
             <%= f.submit "submit", class: "btn btn-primary"%>
         </div>
+
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Hint
+        </button>
     </div>
+
 </div>
 </div>
 <% end %>
+
+
+    <div class="row">
+        <div class="col-md-8">
+        <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            Possible Answers:
+<% @possible_song_names.each do |possible_song_name|%>  
+<%= form_for :data, url: trivia_playlistsubmit_url do |f| %>
+
+
+  <%= hidden_field_tag :playlist_id, @playlist.id %>
+  <%= hidden_field_tag :song_ids, @song_ids %>
+  <%= hidden_field_tag :song_completed_ids, @song_completed_ids%>
+  <%= hidden_field_tag :song_id, @song.id %>
+  <%= hidden_field :data, :answer, value: possible_song_name %>
+
+  <%= f.submit possible_song_name %>
+           
+<% end %> 
+<% end %>
+</div>
+</div>
+</div>
+</div>

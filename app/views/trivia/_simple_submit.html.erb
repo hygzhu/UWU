@@ -15,7 +15,27 @@
         <div class="col-md-3">
             <%= f.submit "submit", class: "btn btn-primary"%>
         </div>
+
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Hint
+        </button>
     </div>
+
+        <div class="row">
+        <div class="col-md-8">
+        <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            Possible Answers:
+            <% @possible_songs.each do |possible_song|%>  
+                <%= button_to possible_song.source_name, trivia_simplesubmit_path, method: :post, params: { :song_id => song.id, :data => {:answer => possible_song.source_name} } %>
+            <% end %>
+        </div>
+        </div>
+        </div>
+        </div>
 </div>
 </div>
 <% end %>
+
+
+
